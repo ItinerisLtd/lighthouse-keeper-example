@@ -5,13 +5,13 @@ orbs:
 
 workflows:
   lighthouse-keeper:
-    # triggers:
-    #   - schedule:
-    #       # Hourly
-    #       cron: "0 * * * *"
-    #       filters:
-    #         branches:
-    #           only: master
+    triggers:
+      - schedule:
+          # Hourly
+          cron: "0 * * * *"
+          filters:
+            branches:
+              only: master
     jobs:
       - lighthouse-keeper/commit:
           name: commit
