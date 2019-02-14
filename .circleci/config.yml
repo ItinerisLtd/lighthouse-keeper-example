@@ -1,0 +1,42 @@
+version: 2.1
+
+orbs:
+  lighthouse-keeper: itinerisltd/lighthouse-keeper@0.1
+
+workflows:
+  lighthouse-keeper:
+    triggers:
+      - schedule:
+          # Daily at 12:00am UTC
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - lighthouse-keeper/commit:
+          name: commit
+          git_user_email: dev@itineris.co.uk
+          git_user_name: itinerisbot
+          git_ssh_fingerprint: 97:a0:9c:13:4e:f8:54:e0:77:43:bb:71:f4:fb:db:65
+          requires:
+            - https://google.com
+            - https://web.dev/
+            - https://typist.tech
+            - https://github.com/pricing
+
+      - lighthouse-keeper/measure:
+          name: https://google.com
+          id: 99999ebcfdb78df077ad2727fd00969f
+          url: https://google.com
+      - lighthouse-keeper/measure:
+          name: https://web.dev/
+          id: e09021ae7f54dd9f3b549cb0bc165f2b
+          url: https://web.dev/
+      - lighthouse-keeper/measure:
+          name: https://typist.tech
+          id: e463522d02041e06b035e8f61910fd43
+          url: https://typist.tech
+      - lighthouse-keeper/measure:
+          name: https://github.com/pricing
+          id: aae423b045c13965ddf45c696df2484d
+          url: https://github.com/pricing
