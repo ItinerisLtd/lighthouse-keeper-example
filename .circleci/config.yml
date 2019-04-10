@@ -4,11 +4,11 @@ orbs:
   lighthouse-keeper: itinerisltd/lighthouse-keeper@0.1
 
 workflows:
-  lighthouse-keeper:
+  lighthouse-keeper-daily:
     triggers:
       - schedule:
-          # Hourly
-          cron: "0 * * * *"
+          # Daily at 02:00 UTC
+          cron: "0 2 * * *"
           filters:
             branches:
               only: master
